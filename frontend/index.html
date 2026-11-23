@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="systemTitle">منظومة الامتحانات الجامعية الإلكترونية</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <h1 class="nav-title" data-i18n="systemTitle">منظومة الامتحانات الجامعية الإلكترونية</h1>
+      <span class="nav-subtitle" data-i18n="collegeName">كلية الحاسبات والمعلومات وإدارة الأعمال</span>
+    </div>
+    <div class="nav-actions">
+      <button type="button" class="lang-toggle-btn" aria-label="Toggle Language">English</button>
+      <a href="admin.html" class="nav-link" data-i18n="adminPortal">بوابة الإدارة</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="card" style="max-width: 680px; margin: 0 auto;">
+      <div class="card-header">
+        <h2 class="card-title" data-i18n="registrationTitle">تسجيل دخول الامتحان الجامعي</h2>
+        <p class="card-subtitle" data-i18n="registrationSubtitle">
+          يرجى إدخال كود الطالب واختيار القسم والمادة للبدء في الاختبار الأكاديمي
+        </p>
+      </div>
+
+      <!-- Alert notification box -->
+      <div id="alertBox" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+      <!-- Verified Student Information Banner -->
+      <div id="studentVerifiedBanner" class="student-verified-banner">
+        <div class="verified-grid">
+          <div>
+            <div class="verified-item-label" data-i18n="studentNameLabel">اسم الطالب المعتمد</div>
+            <div id="verifiedStudentName" class="verified-item-value">-</div>
+          </div>
+          <div>
+            <div class="verified-item-label" data-i18n="registeredDeptLabel">القسم المقيد به</div>
+            <div id="verifiedStudentDept" class="verified-item-value">-</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <form id="registrationForm" novalidate>
+        <!-- Student ID Input with Verify Action -->
+        <div class="form-group">
+          <label for="studentIdInput" class="form-label" data-i18n="studentIdLabel">كود الطالب (Student ID)</label>
+          <div style="display: flex; gap: 0.75rem;">
+            <input
+              type="text"
+              id="studentIdInput"
+              class="form-control"
+              data-i18n-placeholder="studentIdPlaceholder"
+              placeholder="أدخل كود الطالب مثلا: ST2024001"
+              autocomplete="off"
+              required
+            >
+            <button type="button" id="verifyBtn" class="btn btn-secondary" style="white-space: nowrap;" data-i18n="verifyIdBtn">
+              تحقق من الكود
+            </button>
+          </div>
+        </div>
+
+        <!-- Academic Department Banner / Tabs -->
+        <div class="form-group">
+          <label class="form-label" data-i18n="departmentBannerTitle">الأقسام الأكاديمية</label>
+          <div id="deptTabsContainer" style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary dept-tab-btn" data-dept="CS" style="flex: 1; min-width: 140px; padding: 0.65rem 0.75rem; font-size: 0.85rem;" data-i18n="deptCS">
+              علوم الحاسب (CS)
+            </button>
+            <button type="button" class="btn btn-secondary dept-tab-btn" data-dept="IS" style="flex: 1; min-width: 140px; padding: 0.65rem 0.75rem; font-size: 0.85rem;" data-i18n="deptIS">
+              نظم المعلومات (IS)
+            </button>
+            <button type="button" class="btn btn-secondary dept-tab-btn" data-dept="Management" style="flex: 1; min-width: 140px; padding: 0.65rem 0.75rem; font-size: 0.85rem;" data-i18n="deptManagement">
+              إدارة الأعمال (Management)
+            </button>
+          </div>
+          <input type="hidden" id="selectedDepartmentVal" value="">
+          <div id="deptLockNotice" class="alert alert-info" style="display: none; padding: 0.6rem 1rem; font-size: 0.85rem; margin-bottom: 0.75rem;" data-i18n="restrictedDeptNotice">
+            تم تثبيت القسم بناء على بيانات الطالب المعتمدة في سجلات الكلية
+          </div>
+        </div>
+
+        <!-- Dynamic Subject Selection -->
+        <div class="form-group">
+          <label for="subjectSelect" class="form-label" data-i18n="selectSubject">اختر المادة الدراسية</label>
+          <select id="subjectSelect" class="form-control" disabled required>
+            <option value="" data-i18n="selectSubjectOption">-- اختر المادة --</option>
+          </select>
+        </div>
+
+        <!-- Exam Notice -->
+        <div class="alert alert-info" data-i18n="examRulesNotice">
+          تنبيه أكاديمي: مدة الامتحان 15 دقيقة بالضبط. سيتم عرض جميع الأسئلة الصالحة المتاحة للمادة بترتيب عشوائي. المحاولة مسموحة مرة واحدة فقط لكل مادة.
+        </div>
+
+        <!-- Submit / Start Button -->
+        <button type="submit" id="startExamBtn" class="btn btn-primary btn-block" disabled data-i18n="startExamBtn">
+          بدء الامتحان
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-i18n="systemTitle">منظومة الامتحانات الجامعية الإلكترونية</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

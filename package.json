@@ -1,0 +1,24 @@
+{
+  "name": "college-online-examination-system",
+  "version": "1.0.0",
+  "description": "College Online Examination & Quiz Management System",
+  "scripts": {
+    "start": "node backend/server.js",
+    "build": "cd backend && npm install",
+    "install:backend": "cd backend && npm install",
+    "seed:admin": "cd backend && node seeders/adminSeeder.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "examination",
+    "college",
+    "quiz",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC"
+}
