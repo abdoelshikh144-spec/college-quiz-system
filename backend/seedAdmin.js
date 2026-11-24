@@ -29,9 +29,19 @@ const seedAdmin = async () => {
         const existingAdmin = await AdminUser.findOne({ email });
 
         if (existingAdmin) {
-            console.log('Admin already exists');
-            process.exit(0);
-        }
+    const passwordHash = await hashPassword(password);
+
+    existingAdmin.email = email;
+    existingAdmin.passwordHash = passwordHash;
+
+    await existingAdmin.save();
+
+    console.log('Admin updated successfully');
+    console.log(`Email: ${email}`);
+    console.log(`Password: ${password}`);
+
+    process.exit(0);
+}
 
         const passwordHash = await hashPassword(password);
 
